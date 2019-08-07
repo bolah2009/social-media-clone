@@ -4,6 +4,7 @@
 
 <%= form_for(@post) do |f| %>
   <div class="field">
+    <%= f.label "Share your thoughts" %> <br>
     <%= f.text_area :content, placeholder: "Compose new post..." %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>

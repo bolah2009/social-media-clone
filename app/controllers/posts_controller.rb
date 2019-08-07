@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      flash[:success] = "Post was successfully created"
       redirect_to root_url
     else
       @posts = Post.all
