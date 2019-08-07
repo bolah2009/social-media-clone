@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.site-navbar {
+  background-color: #3b5998;
+  display: flex;
+  height: 82px;
+  width: 100%;
+}
+
+.logo {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/BMqLtfVG5E7.png");
+  width: 170px;
+  height: 34px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  color: white;
+}
