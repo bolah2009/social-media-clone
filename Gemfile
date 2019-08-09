@@ -48,6 +48,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.6'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
