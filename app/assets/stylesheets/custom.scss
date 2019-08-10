@@ -10,6 +10,11 @@ body {
   font-family: "lucida grande";
   // , tahoma, verdana, arial, sans-serif;
 }
+
+ul {
+  list-style-type: none;
+}
+
 .site-navbar {
   background-color: #3b5998;
   display: flex;
@@ -161,4 +166,43 @@ body {
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
   }
+}
+
+.feed-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 30% 20% 20% 30%;
+  grid-template-rows: auto;
+  grid-template-areas:
+  " . form form . "
+  " . posts posts . ";
+}
+
+.feed-container form {
+  display: flex;
+  flex-direction: column;
+  grid-area: form;
+}
+
+.post-label {
+  width: 100%;
+}
+
+.post-textarea {
+  height: 120px;
+  width: 100%;
+}
+
+.feed-container input {
+  margin-top: 10px;
+  width: 80px;
+}
+
+.posts-container {
+  grid-area: posts;
+}
+
+.post-comment-area {
+  height: 40px;
+  width: 100%;
 }

@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = current_user.posts.build
+    # @comment = current_user.comments.build
   end
 
   def create

@@ -1,4 +1,13 @@
-<li>
-    <div><%= post.content %></div>
-    <div> Posted by:  <%= post.user.name %></div>
-</li>
+<div class="posts">
+  <span class="post-user-name"><%= post.user.name %></span>
+  <span class="post-time"><%= time_ago_in_words(post.created_at) %> ago.</span>
+  <p class="post-content"><%= post.content %></p>
+
+  <%= form_for(:comment, :url => comment_path(:new)) do |f| %>
+
+    <%= f.text_area :content, placeholder: "Write a comment..." %>
+
+    <%= f.submit "Comment", placeholder: "Write a comment..." %>
+  <% end %>
+
+</div>
