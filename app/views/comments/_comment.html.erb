@@ -1,0 +1,10 @@
+<div class="comment-container">
+  <img src="" alt="">
+  <div class="">
+    <span><%= comment.user.name %>:</span>
+    <span><%= comment.content %></span>
+  </div>
+  <% if comment.user.id == current_user.id %>
+    <%= link_to "Delete", comment_path(comment.id), method: :delete %>
+  <% end %>
+</div>

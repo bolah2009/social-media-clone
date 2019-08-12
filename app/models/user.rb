@@ -11,4 +11,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+
+  def liked?(post_id)
+    likes_given.where("post_id = ?", post_id).any?
+  end
 end

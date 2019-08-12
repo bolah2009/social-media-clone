@@ -3,9 +3,21 @@
   <span class="post-time"><%= time_ago_in_words(post.created_at) %> ago.</span>
   <p class="post-content"><%= post.content %></p>
 
-  <%= form_for(:comment, :url => comment_path(:new)) do |f| %>
+  <% if post.comments.any? %>
+    <%= render post.comments %>
+  <% end %>
+
+  <% if current_user.liked?(post.id) %>
+    <%= render 'comments/unlike_form', post: post %>
+  <% else %>
+    <%= render 'comments/like_form', post: post %>
+  <% end %>
+
+  <%= form_for Comment.new do |f| %>
 
     <%= f.text_area :content, placeholder: "Write a comment..." %>
+
+    <%= f.hidden_field :post_id, value: post.id %>
 
     <%= f.submit "Comment", placeholder: "Write a comment..." %>
   <% end %>
