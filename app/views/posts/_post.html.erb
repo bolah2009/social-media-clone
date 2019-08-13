@@ -1,25 +1,15 @@
 <div class="posts">
-  <span class="post-user-name"><%= post.user.name %></span>
-  <span class="post-time"><%= time_ago_in_words(post.created_at) %> ago.</span>
+  <h3 class="post-user-name"><%=link_to post.user.name, user_path(post.user)%></h3>
+  <time class="post-time" datetime="<%=post.created_at%>"><%= time_ago_in_words(post.created_at) %> ago.</time>
   <p class="post-content"><%= post.content %></p>
+  <div class="count"> 
+  <span class="likes-count"><%= render 'shared/like_unlike', post: post %> <span><%= post.likes.count if post.likes.any? %></span> </span>
+  <span class="comments-count"><%= render 'shared/comment_icon' %> <%= post.comments.count if post.comments.any? %></span>
+  </div>
 
   <% if post.comments.any? %>
     <%= render post.comments %>
   <% end %>
 
-  <% if current_user.liked?(post.id) %>
-    <%= render 'comments/unlike_form', post: post %>
-  <% else %>
-    <%= render 'comments/like_form', post: post %>
-  <% end %>
-
-  <%= form_for Comment.new do |f| %>
-
-    <%= f.text_area :content, placeholder: "Write a comment..." %>
-
-    <%= f.hidden_field :post_id, value: post.id %>
-
-    <%= f.submit "Comment", placeholder: "Write a comment..." %>
-  <% end %>
-
+  <%= render 'comments/new_comment', post: post  %>
 </div>

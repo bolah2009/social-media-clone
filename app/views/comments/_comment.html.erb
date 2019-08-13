@@ -1,10 +1,11 @@
 <div class="comment-container">
-  <img src="" alt="">
-  <div class="">
-    <span><%= comment.user.name %>:</span>
-    <span><%= comment.content %></span>
-  </div>
+<div class="comment">
+    <span class="comment-user"><%= link_to comment.user.name, user_path(comment.user)%> </span>
+    <span class="comment-content"><%= comment.content %></span>
+    </div>
   <% if comment.user.id == current_user.id %>
-    <%= link_to "Delete", comment_path(comment.id), method: :delete %>
+    <%= link_to(comment_path(comment.id), method: :delete, class: "comment-delete") do %>
+    <%= render 'shared/delete_icon'%>
+    <% end %>
   <% end %>
 </div>

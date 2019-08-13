@@ -1,0 +1,9 @@
+  <%= form_for Comment.new do |f| %>
+    <%= f.text_area :content, placeholder: "Write a comment...", class: "new-comment" %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <div class="button">
+    <%= f.button do %>
+      <%= render 'shared/comment_icon' %> 
+    <% end %>
+    </div>
+  <% end %>

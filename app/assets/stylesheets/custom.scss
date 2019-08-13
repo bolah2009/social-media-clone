@@ -7,8 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background: #edf0f5;
-  font-family: "lucida grande";
-  // , tahoma, verdana, arial, sans-serif;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 }
 
 ul {
@@ -174,28 +173,40 @@ ul {
   grid-template-columns: 30% 20% 20% 30%;
   grid-template-rows: auto;
   grid-template-areas:
-  " . form form . "
-  " . posts posts . ";
+    " . form form . "
+    " . posts posts . ";
 }
 
-.feed-container form {
+.new_post {
   display: flex;
   flex-direction: column;
   grid-area: form;
-}
+  margin: 4px;
 
-.post-label {
-  width: 100%;
-}
+  .post-textarea {
+    border: 1px solid #fff;
+    margin: 4px 0;
+    vertical-align: top;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    height: 64px;
+    resize: none;
+    overflow: auto;
+    border-radius: 8px;
+    width: 100%;
+  }
 
-.post-textarea {
-  height: 120px;
-  width: 100%;
-}
+  ::placeholder {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 28px;
+  }
 
-.feed-container input {
-  margin-top: 10px;
-  width: 80px;
+  input {
+    margin-top: 10px;
+    width: 100%;
+  }
 }
 
 .posts-container {
@@ -205,4 +216,174 @@ ul {
 .post-comment-area {
   height: 40px;
   width: 100%;
+}
+
+.posts {
+  border: 1px solid #dddfe2;
+  background: #fff;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 8px 16px;
+
+  .post-user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #385898;
+    margin-bottom: 4px;
+  }
+
+  .post-time {
+    font-size: 12px;
+  }
+
+  .post-content {
+    margin: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dddfe2;
+  }
+
+  .count {
+    border-bottom: 1px solid #dddfe2;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+
+    .svg-comment {
+      height: 16px;
+    }
+
+    .likes-count {
+      display: flex;
+    }
+    .like-wrapper {
+      padding: 0;
+      display: inline-block;
+
+      button {
+        background: none;
+        border: none;
+      }
+
+      .svg-like {
+        height: 16px;
+
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+      }
+
+      .new_like,
+      .edit_like {
+        padding: 0;
+        border: none;
+        background-color: none;
+      }
+
+      .edit_like {
+        .svg-like {
+          path.a {
+            fill: #007bff;
+            stroke: #007bff;
+          }
+
+          rect.a {
+            fill: #dddfe2;
+            stroke: #007bff;
+          }
+        }
+      }
+    }
+  }
+
+  .comment-container {
+    background-color: #dddfe2;
+    border: 1px solid;
+    border-color: #dddfe2;
+    margin: 14px 0;
+    padding: 8px;
+    border-radius: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .comment {
+      display: inline-block;
+    }
+
+    .comment-user {
+      font-size: 12px;
+      font-weight: 600;
+      color: #385898;
+    }
+
+    .comment-content {
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .comment-delete {
+      padding: 0 8px;
+    }
+
+    .svg-delete {
+      height: 16px;
+    }
+  }
+
+  .new_comment {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+
+    textarea.new-comment,
+    .button {
+      background-color: #dddfe2;
+      border: 1px solid;
+      border-color: #999;
+      margin: 4px 0;
+      vertical-align: top;
+      padding: 8px 10px;
+      box-sizing: border-box;
+      height: 48px;
+    }
+
+    textarea.new-comment {
+      resize: none;
+      overflow: auto;
+      flex: 2 0 90%;
+      border-radius: 24px 0 0 24px;
+      border-right: none;
+    }
+
+    textarea::placeholder {
+      font-size: 0.8em;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+
+    .button {
+      border-radius: 0 24px 24px 0;
+      border-left: none;
+      flex: 1 0 5%;
+      padding: 0;
+
+      button {
+        box-sizing: border-box;
+        padding: 8px;
+        border: none;
+        background: none;
+
+        .svg-comment {
+          height: 16px;
+        }
+      }
+    }
+  }
 }
