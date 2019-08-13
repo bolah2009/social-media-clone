@@ -1,16 +1,13 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
-  def new
-
-  end
+  def new; end
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if @comment.save
-      redirect_to posts_path
-    else
-
-    end
+    redirect_to posts_path if @comment.save
   end
 
   def destroy

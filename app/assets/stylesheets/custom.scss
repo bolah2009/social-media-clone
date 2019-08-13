@@ -22,11 +22,43 @@ ul {
   justify-content: center;
 }
 
+.site-navbar.signed-in {
+  height: 42px;
+
+  .small-logo {
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/v_BCN1X0uyo.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -125px -304px;
+    display: block;
+    height: 24px;
+    outline: none;
+    overflow: hidden;
+    text-indent: -999px;
+    white-space: nowrap;
+    width: 24px;
+  }
+}
+
 .nav-content {
   display: flex;
   width: 80%;
   justify-content: space-between;
   align-items: center;
+
+  .button_to {
+    [type="submit"] {
+      border: none;
+      background: none;
+      font-weight: 600;
+      color: #fff;
+    }
+
+
+    [type="submit"]:hover {
+      color: #ddd;
+    }
+  }
 }
 
 .logo {
@@ -36,6 +68,31 @@ ul {
   background-position: 0 0;
   background-repeat: no-repeat;
   color: white;
+  font-size: 0;
+}
+
+.alert {
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+#error_explanation {
+  border: 0.8px solid red;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  padding: 4px;
+
+  h2 {
+    display: none;
+  }
+
+  ul {
+    padding-left: 8px;
+    margin: 0;
+  }
 }
 
 .log-in-form {

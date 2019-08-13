@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
-    p params
     @like = current_user.likes_given.build(post_id: params[:post_id])
-    if @like.save
-      redirect_to posts_path
-    end
+    redirect_to posts_path if @like.save
   end
 
   def destroy
