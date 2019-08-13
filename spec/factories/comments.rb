@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :comment do
-    user_id { 1 }
-    post_id { 1 }
-    content { "MyText" }
+    content { 'My comment' }
+    association :post
+    user { post.user }
   end
 end

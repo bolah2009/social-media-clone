@@ -30,20 +30,20 @@
  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
     <div class="first-name">
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "First Name" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "new_user_name",  placeholder: "First Name" %>
     </div>
   </div>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "new_user_email", placeholder: "Your Email" %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", id: "new_user_password", placeholder: "New Password" %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Re-enter Your Password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "new_user_password_confirmation", placeholder: "Re-enter Your Password" %>
   </div>
 
   <div class="actions">
