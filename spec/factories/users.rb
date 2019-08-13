@@ -5,5 +5,9 @@ FactoryBot.define do
     name { 'Bola' }
     sequence(:email) { |n| "test#{n}@example.com" }
     password { 'password' }
+
+    trait :with_posts do
+      after(:create) { |user| create_list(:post, 5, user: user) }
+    end
   end
 end
