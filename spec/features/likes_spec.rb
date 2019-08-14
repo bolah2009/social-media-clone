@@ -1,20 +1,25 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature 'Likes', type: :feature do
-
   let(:user) { FactoryBot.create(:user, :with_posts) }
   let(:other_user) { FactoryBot.create(:user) }
 
   before do
-    visit root_path
-    fill_in 'user_email',    with: other_user.email
-    fill_in 'user_password', with: other_user.password
-    click_button 'Log in'
+    sign_in user
   end
 
-  scenario "user can like other user posts" do
+  scenario 'user can like and unlike posts' do
+    sign_in other_user
+
+    visit root_path
+
     expect do
-      find("name='like-button'").click
-    end.to change(other_user.likes_given, :count).by(1)
+      find("[name='like-button']", match: :first).click
+      expect(page).to have_css 'form.edit_like'
+      find("form.edit_like [name='unlike-button']", match: :first).click
+      expect(page).to_not have_css 'form.edit_like'
+    end.to change(other_user.likes_given, :count).by(0)
   end
 end
