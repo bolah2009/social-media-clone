@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    flash[:success] = 'Comment succefully created'
+    flash[:success] = 'Comment successfully created'
     redirect_to posts_path if @comment.save
   end
 
