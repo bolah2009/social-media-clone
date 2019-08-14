@@ -7,15 +7,17 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
+    flash[:success] = 'Comment succefully created'
     redirect_to posts_path if @comment.save
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
-    if @comment
-      @comment.delete
-      redirect_to posts_path
-    end
+    return unless @comment
+
+    @comment.delete
+    flash[:success] = 'Your comment was deleted'
+    redirect_to posts_path
   end
 
   private

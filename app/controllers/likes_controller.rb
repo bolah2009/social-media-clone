@@ -10,10 +10,10 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(id: params[:id])
-    if @like
-      @like.delete
-      redirect_to posts_path
-    end
+    return unless @like
+
+    @like.delete
+    redirect_to posts_path
   end
 
   private

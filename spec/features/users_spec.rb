@@ -7,9 +7,9 @@ RSpec.feature 'Users', type: :feature do
   scenario 'create a new user' do
     visit root_path
 
-    fill_in 'new_user_name',                  with: params[:name]
-    fill_in 'new_user_email',                 with: params[:email]
-    fill_in 'new_user_password',              with: params[:password]
+    fill_in 'new_user_name', with: params[:name]
+    fill_in 'new_user_email', with: params[:email]
+    fill_in 'new_user_password', with: params[:password]
     fill_in 'new_user_password_confirmation', with: params[:password]
 
     expect do
