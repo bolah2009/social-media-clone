@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes_given, foreign_key: :user_id, class_name: 'Like',
                          dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
