@@ -1,15 +1,19 @@
 <div class="posts">
   <h3 class="post-user-name"><%=link_to post.user.name, user_path(post.user)%></h3>
-  <time class="post-time" datetime="<%=post.created_at%>"><%= time_ago_in_words(post.created_at) %> ago.</time>
+  <time class="post-time" datetime="<%=post.created_at%>"><%= time_ago_in_words(post.created_at) %>
+    ago.</time>
   <p class="post-content"><%= post.content %></p>
-  <div class="count"> 
-  <span class="likes-count"><%= render 'shared/like_unlike', post: post %> <span><%= post.likes.count if post.likes.any? %></span> </span>
-  <span class="comments-count"><%= render 'shared/comment_icon' %> <%= post.comments.count if post.comments.any? %></span>
+  <div class="count">
+    <span class="likes-count"><%= render 'shared/like_unlike', post: post %>
+      <span><%= post.likes.count if post.likes.any? %></span>
+    </span>
+    <span class="comments-count"><%= render 'shared/comment_icon' %>
+      <%= post.comments.count if post.comments.any? %></span>
   </div>
 
   <% if post.comments.any? %>
     <%= render post.comments %>
   <% end %>
 
-  <%= render 'comments/new_comment', post: post  %>
+  <%= render 'comments/new_comment', post: post %>
 </div>

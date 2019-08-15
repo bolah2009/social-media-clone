@@ -5,8 +5,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    flash[:success] = 'Comment successfully created'
-    redirect_to posts_path if @comment.save
+    if @comment.save
+      flash[:success] = 'Comment successfully created'
+      redirect_to posts_path
+    end
   end
 
   def destroy
