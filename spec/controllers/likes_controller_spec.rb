@@ -12,10 +12,7 @@ RSpec.describe LikesController, type: :controller do
       it 'like on a post' do
         sign_in user
         expect do
-          p user.likes_given.count
-          p like_params
           post :create, params: { post_id: like_params }
-          p user.likes_given.count
           expect(response).to redirect_to posts_path
         end.to change(user.likes_given, :count).by(1)
       end
