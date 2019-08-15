@@ -7,6 +7,13 @@ RSpec.describe Comment, type: :model do
     FactoryBot.build(:comment, user: nil, post: nil, content: '')
   end
 
+  let(:valid_comment) { FactoryBot.create(:comment) }
+
+  it 'is valid with a user, post and content' do
+    valid_comment.valid?
+    expect(valid_comment.errors).to be_empty
+  end
+
   it 'is invalid without a user' do
     comment.valid?
     expect(comment.errors[:user]).to include('must exist')

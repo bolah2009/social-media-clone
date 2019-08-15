@@ -12,12 +12,21 @@ RSpec.feature 'Comments', type: :feature do
     visit root_path
   end
 
-  scenario 'user can write comments on posts' do
+  scenario 'user can write valid comments on posts' do
     expect do
       fill_in 'Write a comment...', match: :first, with: 'Yippee ki-yay'
       click_button 'comment-button', match: :first
+      expect(page).to have_css '.alert-success'
+      expect(page).to have_content 'Comment successfully created'
       expect(page).to have_content 'Yippee ki-yay'
     end.to change(user.comments, :count).by(1)
+
+    expect do
+      fill_in 'Write a comment...', match: :first, with: ''
+      click_button 'comment-button', match: :first
+      expect(page).to have_css '.alert-warning'
+      expect(page).to have_content 'Comment not created'
+    end.to change(user.comments, :count).by(0)
   end
 
   scenario 'user can delete comments' do

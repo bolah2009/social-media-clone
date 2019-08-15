@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.feature 'Users', type: :feature do
   let(:params) { FactoryBot.attributes_for(:user) }
-  scenario 'create a new user' do
+  let!(:dup_user) { FactoryBot.create(:user) }
+
+  scenario 'create a new user with valid entries' do
     visit root_path
 
     fill_in 'new_user_name', with: params[:name]
@@ -18,8 +20,26 @@ RSpec.feature 'Users', type: :feature do
     end.to change(User.all, :count).by(1)
   end
 
+  scenario 'create a new user with invalid entries' do
+    visit root_path
+
+    fill_in 'new_user_name', with: ''
+    fill_in 'new_user_email', with: dup_user[:email]
+    fill_in 'new_user_password', with: 'bad'
+    fill_in 'new_user_password_confirmation', with: ''
+
+    expect do
+      click_button 'Sign up'
+      expect(page).to have_css '#error_explanation'
+      expect(page).to have_content "Name can't be blank"
+      expect(page).to have_content 'Email has already been taken'
+      expect(page).to have_content 'Password is too short (minimum is 6 characters)'
+      expect(page).to have_content "Password confirmation doesn't match Password"
+    end.to change(User.all, :count).by(0)
+  end
+
   let(:user) { FactoryBot.create(:user) }
-  scenario 'log in and user' do
+  scenario 'log in a valid user' do
     visit root_path
 
     fill_in 'user_email', with: user.email
@@ -28,5 +48,16 @@ RSpec.feature 'Users', type: :feature do
     click_button 'Log in'
 
     expect(page).to have_content 'Signed in successfully.'
+  end
+
+  scenario 'log in with invalid user' do
+    visit root_path
+
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: 'invalid password'
+
+    click_button 'Log in'
+
+    expect(page).to have_content 'Invalid Email or password.'
   end
 end

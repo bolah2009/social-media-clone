@@ -7,8 +7,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:success] = 'Comment successfully created'
-      redirect_to posts_path
+    else
+      flash[:warning] = 'Comment not created'
     end
+    redirect_to posts_path
   end
 
   def destroy
