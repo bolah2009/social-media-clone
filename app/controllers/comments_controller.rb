@@ -3,8 +3,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def new; end
-
   def create
     @comment = current_user.comments.build(comment_params)
     flash[:success] = 'Comment successfully created'
