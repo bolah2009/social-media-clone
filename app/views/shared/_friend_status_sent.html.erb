@@ -1,0 +1,6 @@
+<p class="status">Friend Request Sent to <%= @user.name %> </p>
+
+<%= form_for(friendships_path(@user.id)), html: { method: :delete } do |f| %>
+    <%= f.hidden_field :friend_id, value: @user.id %>
+    <%= f.submit 'Cancel Friend Request', class: "btn btn-warning"%>
+<% end %>

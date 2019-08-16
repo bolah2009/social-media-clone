@@ -8,21 +8,17 @@
         </h1>
 
         <% unless @user == current_user %>
-
-          <% if current_user.friend?(user) %>
-
-          <% elsif current_user.sent_request?(user) %>
-
-          <% elsif current_user.pending_request?(user) %>
-
+        <div class="friend-status">
+          <% if current_user.friend?(@user) %>
+            <%= render 'shared/friend_status_friends' %>
+          <% elsif current_user.sent_request?(@user) %>
+            <%= render 'shared/friend_status_sent' %>
+          <% elsif current_user.pending_request?(@user) %>
+            <%= render 'shared/friend_status_pending' %>
           <% else %>
-
+            <%= render 'shared/friend_status_new' %>
           <% end %>
-
-          <%= form_for(Friendship.new) do |f| %>
-          <%= f.hidden_field :friend_id, value: @user.id %>
-          <%= f.submit "Send friend request", class: "btn btn-primary" %>
-        <% end %>
+          </div>
       <% end %>
     </section>
     <section class="friends">

@@ -10,6 +10,14 @@ class FriendshipsController < ApplicationController
     redirect_to root_url
   end
 
+  def destroy
+    render 'here'
+  end
+
+  def update
+    render 'here'
+  end
+
   def index; end
 
   private

@@ -1,0 +1,6 @@
+<p class="status">You are Friends with <%= @user.name %> </p>
+
+<%= form_for(friendships_path(@user.id)) do |f| %>
+    <%= f.hidden_field :friend_id, value: @user.id %>
+    <%= f.submit "Unfriend", class: "btn btn-danger" %>
+<% end %>
