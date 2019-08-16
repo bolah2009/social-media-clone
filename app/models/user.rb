@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  def liked?(post_id)
+    likes_given.where('post_id = ?', post_id).any?
+  end
+
   def pending_requests
     Friendship.where('friend_id = ? AND confirmed = ?', id, false)
   end
@@ -24,7 +28,15 @@ class User < ApplicationRecord
     Friendship.where('user_id = ? AND confirmed = ?', id, false)
   end
 
-  def liked?(post_id)
-    likes_given.where('post_id = ?', post_id).any?
+  def sent_request?(user)
+    sent_requests.where('friend_id = ?', user.id).any?
+  end
+
+  def pending_request?(user)
+    pending_requests.where('user_id = ?', user.id).any?
+  end
+
+  def friend?(user)
+    friends.include?(user)
   end
 end
