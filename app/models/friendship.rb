@@ -11,4 +11,11 @@ class Friendship < ApplicationRecord
     save
     Friendship.create(user_id: friend.id, friend_id: user_id, confirmed: true)
   end
+
+  def unfriend
+    return unless confirmed
+
+    Friendship.destroy(user_id: friend.id, friend_id: user_id)
+    destroy
+  end
 end

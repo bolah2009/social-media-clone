@@ -3,7 +3,7 @@
 
 <div class="pending-request">
 <div class="accept">
-<%= form_for Friendship.new do |f| %>
+<%= form_for current_user.pending_requests.find_by(user_id: @user.id) do |f| %>
     <%= f.hidden_field :friend_id, value: @user.id %>
     <%= f.submit "Accept Friend Request", class: "btn btn-primary" %>
 <% end %>
