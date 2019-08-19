@@ -1,8 +1,11 @@
-<p class="status">You are Friends with <%= @user.name %> </p>
+<p class="status">You are Friends with
+  <%= @user.name %>
+</p>
 
-<%= form_for current_user.friendships.find_by(friend_id: @user.id),
-             html: { method: :delete } do |f| %>
-    <%= f.hidden_field :friend_id, value: @user.id %>
-    <%= f.hidden_field :type, value: :unfriend %>
-    <%= f.submit "Unfriend", class: "btn btn-danger" %>
+<% friendship = current_user.friendships.find_by(friend_id: @user.id) %>
+
+  <%= form_for friendship, html: { method: :delete } do |f| %>
+  <%= f.hidden_field :friendship_id, value: friendship.id %>
+  <%= f.hidden_field :type, value: :unfriend %>
+  <%= f.submit "Unfriend", class: "btn btn-danger" %>
 <% end %>

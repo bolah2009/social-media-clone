@@ -1,20 +1,20 @@
-<p class="status"><%= @user.name %> sent you a friend request! </p>
+<p class="status"><%= @user.name %>
+  sent you a friend request!
+</p>
 
+<% friendship = current_user.pending_requests.find_by(user_id: @user.id) %>
 
-<div class="pending-request">
-<div class="accept">
-<%= form_for current_user.pending_requests.find_by(user_id: @user.id) do |f| %>
-    <%= f.hidden_field :friend_id, value: @user.id %>
-    <%= f.submit "Accept Friend Request", class: "btn btn-primary" %>
-<% end %>
-</div>
-<div class="reject">
-
-<%= form_for current_user.pending_requests.find_by(user_id: @user.id),
-             html: { method: :delete } do |f| %>
-    <%= f.hidden_field :friend_id, value: @user.id %>
-    <%= f.hidden_field :type, value: :pending %>
+  <div class="pending-request">
+    <div class="accept">
+      <%= form_for friendship do |f| %>
+      <%= f.hidden_field :friendship_id, value: friendship.id %>
+      <%= f.submit "Accept Friend Request", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="reject">
+    <%= form_for friendship, html: { method: :delete } do |f| %>
+    <%= f.hidden_field :friendship_id, value: friendship.id %>
     <%= f.submit "Reject Friend Request", class: "btn btn-warning" %>
-<% end %>
+  <% end %>
 </div>
 </div>

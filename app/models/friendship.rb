@@ -12,10 +12,10 @@ class Friendship < ApplicationRecord
     Friendship.create(user_id: friend.id, friend_id: user_id, confirmed: true)
   end
 
-  def unfriend
+  def destroy_mutual
     return unless confirmed
 
-    Friendship.destroy(user_id: friend.id, friend_id: user_id)
-    destroy
+    Friendship.where('user_id = ? AND friend_id = ?',
+                     friend.id, user.id).each(&:destroy)
   end
 end

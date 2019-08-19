@@ -2,7 +2,7 @@
 
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :friendship_request, only: :destroy
+  before_action :find_friendship, only: %i[destroy update]
 
   def create
     friendship = current_user.friendships.build(friendship_params)
@@ -13,15 +13,13 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
+    @friendship.destroy_mutual if friendship_params[:type] == 'unfriend'
     @friendship&.destroy
     redirect_to request.referrer
   end
 
   def update
-    friendship = current_user.pending_requests
-      .where('user_id = ?', friendship_params[:friend_id]).first
-    p friendship
-    return unless friendship.confirm_friend
+    return unless @friendship.confirm_friend
 
     flash[:success] = 'Friend request accepted'
     redirect_to request.referrer
@@ -31,25 +29,11 @@ class FriendshipsController < ApplicationController
 
   private
 
-  def friendship_request
-    case friendship_params[:type]
-    when 'pending'
-      @friendship = current_user.pending_requests
-        .where('user_id =  ?', friendship_params[:friend_id]).first
-    when 'sent'
-      @friendship = current_user.sent_requests
-        .where('friend_id = ?', friendship_params[:friend_id]).first
-    when 'unfriend'
-      @friendship = current_user.friendships
-        .where('friend_id = ?', friendship_params[:friend_id]).first
-      @friendship.unfriend
-    end
-    @friendship
+  def find_friendship
+    @friendship = Friendship.find_by(id: friendship_params[:friendship_id])
   end
 
-  def unfriend; end
-
   def friendship_params
-    params.require(:friendship).permit(:friend_id, :type)
+    params.require(:friendship).permit(:friend_id, :friendship_id, :type)
   end
 end
