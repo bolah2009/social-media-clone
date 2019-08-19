@@ -23,7 +23,7 @@
     </section>
     <section class="friends">
       <% if @user.friends.any? %>
-        <% render @friendships %>
+        <% render 'friendships/friends', friend: @user.friends %>
         <% else %>
         <% end %>
       </section>

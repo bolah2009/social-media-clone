@@ -3,14 +3,17 @@
 
 <div class="pending-request">
 <div class="accept">
-<%= form_for friendships_url(@user.id) do |f| %>
+<%= form_for Friendship.new do |f| %>
     <%= f.hidden_field :friend_id, value: @user.id %>
     <%= f.submit "Accept Friend Request", class: "btn btn-primary" %>
 <% end %>
 </div>
 <div class="reject">
-<%= form_for(friendships_url(@user.id), html: { method: :delete }) do |f| %>
+
+<%= form_for current_user.pending_requests.find_by(user_id: @user.id),
+             html: { method: :delete } do |f| %>
     <%= f.hidden_field :friend_id, value: @user.id %>
+    <%= f.hidden_field :type, value: :pending %>
     <%= f.submit "Reject Friend Request", class: "btn btn-warning" %>
 <% end %>
 </div>

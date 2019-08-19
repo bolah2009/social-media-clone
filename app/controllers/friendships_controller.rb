@@ -7,11 +7,22 @@ class FriendshipsController < ApplicationController
     return unless friendship.save
 
     flash[:success] = 'Friend request sent'
-    redirect_to root_url
+    redirect_to request.referrer
   end
 
   def destroy
-    render 'here'
+    p friendship_params
+    operation = friendship_params[:type]
+    case operation
+    when 'pending'
+      friendship = current_user.pending_requests
+        .where('user_id =  ?', friendship_params[:friend_id])
+    when 'sent'
+      friendship = current_user.sent_requests
+        .where('friend_id = ?', friendship_params[:friend_id])
+    end
+    friendship.first&.destroy
+    redirect_to request.referrer
   end
 
   def update
@@ -23,6 +34,6 @@ class FriendshipsController < ApplicationController
   private
 
   def friendship_params
-    params.require(:friendship).permit(:friend_id)
+    params.require(:friendship).permit(:friend_id, :type)
   end
 end
