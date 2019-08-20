@@ -1,0 +1,20 @@
+<div class="dropdown show">
+  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Notifications
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+    <% pending_requests = current_user.pending_requests %>
+
+      <% if pending_requests.any? %>
+        <% pending_requests.each do |request| %>
+          <% user = request.user %>
+          <%= link_to user.name, user, class: 'dropdown-item' %>
+        <% end %>
+      <% else %>
+        No pending request
+      <% end %>
+
+    </div>
+  </div>
