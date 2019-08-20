@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
     return unless friendship.save
 
     flash[:success] = 'Friend request sent'
-    redirect_to request.referrer
+    redirect_to request.referrer || root_path
   end
 
   def destroy
