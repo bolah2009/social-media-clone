@@ -16,14 +16,17 @@ class Friendship < ApplicationRecord
     Friendship.create(user_id: friend_id, friend_id: user_id, confirmed: true)
   end
 
-  def destroy_mutual
-    return unless confirmed
-
-    Friendship.where('user_id = ? AND friend_id = ?',
-                     friend.id, user.id).each(&:destroy)
+  def destroy_friendship
+    destroy_mutual if confirmed
+    destroy
   end
 
   private
+
+  def destroy_mutual
+    Friendship.where('user_id = ? AND friend_id = ?',
+                     friend.id, user.id).each(&:destroy)
+  end
 
   def friend_cannot_be_user
     errors.add(:invalid_friendship, "can't be friend with same user") if user_id == friend_id

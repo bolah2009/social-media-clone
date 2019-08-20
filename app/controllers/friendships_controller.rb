@@ -13,8 +13,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship.destroy_mutual if friendship_params[:type] == 'unfriend'
-    @friendship&.destroy
+    @friendship&.destroy_friendship
     redirect_to request.referrer
   end
 
@@ -34,6 +33,6 @@ class FriendshipsController < ApplicationController
   end
 
   def friendship_params
-    params.require(:friendship).permit(:friend_id, :friendship_id, :type)
+    params.require(:friendship).permit(:friend_id, :friendship_id)
   end
 end

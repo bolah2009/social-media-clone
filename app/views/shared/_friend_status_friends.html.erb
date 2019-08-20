@@ -6,6 +6,5 @@
 
   <%= form_for friendship, html: { method: :delete } do |f| %>
   <%= f.hidden_field :friendship_id, value: friendship.id %>
-  <%= f.hidden_field :type, value: :unfriend %>
   <%= f.submit "Unfriend", class: "btn btn-danger" %>
 <% end %>
