@@ -3,20 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:user) { FactoryBot.create(:user) }
   describe '#index' do
-    before do
-      @user = FactoryBot.create(:user)
-    end
-
     context 'as an authenticated user' do
       it 'responds successfully' do
-        sign_in @user
+        sign_in user
         get :index
         expect(response).to be_successful
       end
 
       it 'returns a 200 response' do
-        sign_in @user
+        sign_in user
         get :index
         expect(response).to have_http_status '200'
       end
@@ -36,29 +33,23 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#create' do
+    let(:post_params) { FactoryBot.attributes_for(:post) }
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-      end
-
       it 'adds a post' do
-        post_params = FactoryBot.attributes_for(:post)
-        sign_in @user
+        sign_in user
         expect do
           post :create, params: { post: post_params }
-        end.to change(@user.posts, :count).by(1)
+        end.to change(user.posts, :count).by(1)
       end
     end
 
     context 'as a guest' do
       it 'returns a 302 response' do
-        post_params = FactoryBot.attributes_for(:post)
         post :create, params: { post: post_params }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        post_params = FactoryBot.attributes_for(:post)
         post :create, params: { post: post_params }
         expect(response).to redirect_to '/users/sign_in'
       end

@@ -1,15 +1,13 @@
-<% if current_user %>
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<% end %>
+<div class="feed-container">
 
-<%= form_for(@post) do |f| %>
-  <div class="field">
-    <%= f.label "Share your thoughts" %> <br>
-    <%= f.text_area :content, placeholder: "Compose new post..." %>
-  </div>
+  <%= form_for(@post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.text_area :content, placeholder: "What's in your mind, #{current_user.name}?", class: "post-textarea"%>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
 
-<h1>All posts</h1>
+<div class="posts-container">
+  <%= render @posts %>
+</div>
 
-<%= render @posts %>
+</div>

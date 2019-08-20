@@ -1,0 +1,7 @@
+<div class="like-wrapper">
+    <% if current_user.liked?(post.id) %>
+    <%= render 'shared/unlike_form', post: post %>
+  <% else %>
+    <%= render 'shared/like_form', post: post %>
+  <% end %>
+</div>

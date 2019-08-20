@@ -1,0 +1,20 @@
+<header>
+  <% if user_signed_in? %>
+  <nav class="site-navbar signed-in">
+    <div class="nav-content">
+      <%= link_to "Home", root_path, class: "small-logo" %>
+      <%= button_to "Sign Out", destroy_user_session_path, method: :delete%>
+    </div>
+  </nav>
+
+ <% else %>
+
+  <nav class="site-navbar">
+    <div class="nav-content">
+      <%= link_to "Home", root_path, class: "logo navbar-brand" %>
+      <%= render 'shared/new_session' %>  
+    </div>
+  </nav>
+  <% end %>
+
+</header>

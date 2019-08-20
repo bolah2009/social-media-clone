@@ -1,0 +1,6 @@
+<%= form_for Like.new do |f| %>
+  <div><%= hidden_field_tag :post_id, post.id %></div>
+  <%= f.button name: "like-button" do %>
+    <%= render 'shared/like_icon' %>
+  <% end %>
+<% end %>
