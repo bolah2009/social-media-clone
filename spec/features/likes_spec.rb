@@ -12,9 +12,9 @@ RSpec.feature 'Likes', type: :feature do
 
   scenario 'user can like and unlike posts' do
     sign_in other_user
-
+    friendship = user.friendships.build(friend_id: other_user.id)
+    friendship.confirm_friend
     visit root_path
-
     expect do
       find("[name='like-button']", match: :first).click
       expect(page).to have_css 'form.edit_like'

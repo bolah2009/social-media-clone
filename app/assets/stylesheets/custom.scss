@@ -270,6 +270,10 @@ ul {
   grid-area: posts;
 }
 
+.friends-container {
+
+}
+
 .post-comment-area {
   height: 40px;
   width: 100%;
@@ -465,7 +469,7 @@ ul {
       display: flex;
       flex-direction: column;
       padding: 8px;
-      
+
     }
 
     .status {
