@@ -449,3 +449,27 @@ ul {
   width: 100%;
   padding: 16px 16px 0 16px;
 }
+
+.user_index {
+  padding: 16px;
+
+  .user_list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+
+    flex-wrap: wrap;
+
+    .list_item {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      
+    }
+
+    .status {
+      display: none;
+    }
+  }
+}

@@ -1,8 +1,8 @@
-<p class="status"><%= @user.name %>
+<p class="status"><%= user.name %>
   sent you a friend request!
 </p>
 
-<% friendship = current_user.pending_requests.find_by(user_id: @user.id) %>
+<% friendship = current_user.pending_requests.find_by(user_id: user.id) %>
 
   <div class="pending-request">
     <div class="accept">

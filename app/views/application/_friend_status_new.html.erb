@@ -1,6 +1,6 @@
-<p class="status"> Not Friends with <%= @user.name %> </p>
+<p class="status"> Not Friends with <%= user.name %> </p>
 
 <%= form_for(Friendship.new) do |f| %>
-    <%= f.hidden_field :friend_id, value: @user.id %>
+    <%= f.hidden_field :friend_id, value: user.id %>
     <%= f.submit 'Send Friend Request', class: "btn btn-primary" %>
 <% end %>
