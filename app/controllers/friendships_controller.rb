@@ -14,14 +14,14 @@ class FriendshipsController < ApplicationController
 
   def destroy
     @friendship&.destroy_friendship
-    redirect_to request.referrer
+    redirect_to request.referrer || root_path
   end
 
   def update
     return unless @friendship.confirm_friend
 
     flash[:success] = 'Friend request accepted'
-    redirect_to request.referrer
+    redirect_to request.referrer || root_path
   end
 
   def index; end
@@ -29,10 +29,10 @@ class FriendshipsController < ApplicationController
   private
 
   def find_friendship
-    @friendship = Friendship.find_by(id: friendship_params[:friendship_id])
+    @friendship = Friendship.find_by(id: params[:id])
   end
 
   def friendship_params
-    params.require(:friendship).permit(:friend_id, :friendship_id)
+    params.require(:friendship).permit(:friend_id)
   end
 end

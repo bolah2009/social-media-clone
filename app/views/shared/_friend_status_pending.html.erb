@@ -7,13 +7,11 @@
   <div class="pending-request">
     <div class="accept">
       <%= form_for friendship do |f| %>
-      <%= f.hidden_field :friendship_id, value: friendship.id %>
       <%= f.submit "Accept Friend Request", class: "btn btn-primary" %>
     <% end %>
   </div>
   <div class="reject">
     <%= form_for friendship, html: { method: :delete } do |f| %>
-    <%= f.hidden_field :friendship_id, value: friendship.id %>
     <%= f.submit "Reject Friend Request", class: "btn btn-warning" %>
   <% end %>
 </div>
