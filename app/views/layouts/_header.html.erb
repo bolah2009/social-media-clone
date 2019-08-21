@@ -6,6 +6,8 @@
 
         <%= render 'layouts/notification_dropdown' %>
 
+        <%= link_to "All Users", users_path %>
+
         <%= button_to "Sign Out", destroy_user_session_path, method: :delete%>
 
       </div>
