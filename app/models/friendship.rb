@@ -4,7 +4,7 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
-  validates :user_id, presence: true
+  validates :user_id, presence: true, uniqueness: { scope: :friend_id }
   validates :friend_id, presence: true
   validate :friend_cannot_be_user
 
