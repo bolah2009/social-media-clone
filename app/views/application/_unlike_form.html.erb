@@ -2,6 +2,6 @@
              html: { method: :delete } do |f| %>
 <div><%= hidden_field_tag :post_id, post.id %></div>
   <%= f.button name: "unlike-button"  do %>
-    <%= render 'shared/like_icon' %> 
+    <%= render 'like_icon' %> 
   <% end %>
 <% end %>
