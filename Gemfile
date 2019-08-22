@@ -38,6 +38,8 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+gem 'omniauth'
+
 gem 'omniauth-facebook'
 
 # Use ActiveStorage variant

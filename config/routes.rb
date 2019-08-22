@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'callbacks' } 
 
   resources :users, only: [:show, :index]
 
