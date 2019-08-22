@@ -9,23 +9,29 @@ class User < ApplicationRecord
   has_many :likes_given, foreign_key: :user_id, class_name: 'Like',
                          dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, -> { where('confirmed = ?', true) }, through: :friendships
+
+  has_many :direct_friends, -> { where confirmed: true }, class_name: 'Friendship', foreign_key: :user_id
+  has_many :inverse_friends, -> { where confirmed: true }, class_name: 'Friendship', foreign_key: :friend_id
+
+  has_many :sent_requests, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: :user_id
+  has_many :pending_requests, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: :friend_id
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
 
+  def test_friends
+    Friendship.where('user_id = :user_id AND confirmed = true', user_id: id)
+      .or(Friendship.where('friend_id = :user_id AND confirmed = true', user_id: id))
+  end
+
+  def friends
+    direct_friends.or(inverse_friends)
+  end
+
   def liked?(post_id)
     likes_given.where('post_id = ?', post_id).any?
-  end
-
-  def pending_requests
-    Friendship.where('friend_id = ? AND confirmed = ?', id, false)
-  end
-
-  def sent_requests
-    Friendship.where('user_id = ? AND confirmed = ?', id, false)
   end
 
   def sent_request?(user)
