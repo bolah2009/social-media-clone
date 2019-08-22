@@ -21,11 +21,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  def test_friends
-    Friendship.where('user_id = :user_id AND confirmed = true', user_id: id)
-      .or(Friendship.where('friend_id = :user_id AND confirmed = true', user_id: id))
-  end
-
   def friends
     direct_friends.or(inverse_friends)
   end
