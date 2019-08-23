@@ -24,15 +24,15 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def liked?(post_id)
-    likes_given.where('post_id = ?', post_id).any?
+    likes_given.where(post_id: post_id).any?
   end
 
   def sent_request?(user)
-    sent_requests.where('friend_id = ?', user.id).any?
+    sent_requests.where(friend_id: user.id).any?
   end
 
   def pending_request?(user)
-    pending_requests.where('user_id = ?', user.id).any?
+    pending_requests.where(user_id: user.id).any?
   end
 
   def friend?(user)
@@ -40,10 +40,7 @@ class User < ApplicationRecord
   end
 
   def feed
-    friend_ids = "SELECT friend_id FROM friendships
-    WHERE  user_id = :user_id AND confirmed = true"
-    Post.where("user_id IN (#{friend_ids})
-      OR user_id = :user_id", user_id: id)
+    Post.where(user_id: friend_ids + [id])
   end
 
   def pending_friends_notification
