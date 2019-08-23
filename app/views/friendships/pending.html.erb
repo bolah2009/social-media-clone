@@ -1,0 +1,14 @@
+<main class="user_index">
+<h1>All Pending requests</h1>
+
+<ol class="user_list">
+<% @pending.each do |user| %>
+  <li class="list_item">
+    <%= gravatar_for user %>
+    <%= link_to user.name, user %>
+    <%= render 'friend_buttons', user: user %>
+</li>
+<% end %>
+</ol>
+
+</main>
