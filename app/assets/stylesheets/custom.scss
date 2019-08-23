@@ -1,10 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
+@font-face {
+  font-family: "lucida grande";
+  src: url("../fonts/lucida grande bold.ttf") format("truetype");
+}
 
 body {
   margin: 0;
   padding: 0;
   background: #edf0f5;
-  font-family: 'Roboto', sans-serif;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 }
 
 ul {
@@ -50,6 +53,7 @@ ul {
       font-weight: 600;
       color: #fff;
     }
+
 
     [type="submit"]:hover {
       color: #ddd;
@@ -221,14 +225,13 @@ ul {
 }
 
 .feed-container {
+  margin-top: 20px;
   display: grid;
-  box-sizing: border-box;
-  margin: 20px 20px 0 20px;
   grid-template-columns: 30% 20% 20% 30%;
   grid-template-rows: auto;
   grid-template-areas:
     " . form form . "
-    " friends-container posts posts . ";
+    " . posts posts . ";
 }
 
 .new_post {
@@ -269,24 +272,6 @@ ul {
 
 .friends-container {
 
-  margin-right: 10px;
-  border: 1px solid #dddfe2;
-  background: #fff;
-  border-radius: 4px;
-  margin: 6px;
-  padding: 8px 16px;
-
-  ul {
-    display: flex;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  li {
-    margin: 6px;
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .post-comment-area {
