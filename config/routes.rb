@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :likes
 
   resources :friendships
+
+  get :pending_requests, to: 'friendships#pending'
 end

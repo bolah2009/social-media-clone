@@ -24,6 +24,10 @@ class FriendshipsController < ApplicationController
     redirect_to request.referrer || root_path
   end
 
+  def pending
+    @pending = current_user.pending_friends
+  end
+
   def index; end
 
   private

@@ -5,13 +5,13 @@
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-    <% pending_requests = current_user.pending_requests %>
+    <% pending_friends = current_user.pending_friends_notification %>
 
-      <% if pending_requests.any? %>
-        <% pending_requests.each do |request| %>
-          <% user = request.user %>
+      <% if pending_friends.any? %>
+        <% pending_friends.each do |user| %>
           <%= link_to user.name, user, class: 'dropdown-item' %>
         <% end %>
+          <%= link_to 'Show all', pending_requests_path, class: 'dropdown-item' %>
       <% else %>
         No pending request
       <% end %>
