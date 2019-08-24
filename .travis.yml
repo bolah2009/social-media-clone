@@ -4,6 +4,8 @@ env:
 language: ruby
 rvm:
   - 2.6.3
+services:
+  - postgresql
 before_install:
   - gem update --system
   - gem install bundler
@@ -11,6 +13,8 @@ install: gem install rails
 notifications:
   - false
 before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
