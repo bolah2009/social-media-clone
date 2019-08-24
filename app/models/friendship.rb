@@ -12,7 +12,6 @@ class Friendship < ApplicationRecord
     return if confirmed
 
     update(confirmed: true)
-    save
     Friendship.create(user_id: friend_id, friend_id: user_id, confirmed: true)
   end
 

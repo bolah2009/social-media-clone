@@ -22,7 +22,7 @@ end
 
 # Post
 users = User.order(:created_at).take(10)
-20.times do
+5.times do
   content = Faker::Lorem.sentence(10)
   users.each { |user| user.posts.create!(content: content) }
 end
@@ -30,9 +30,9 @@ end
 # Comments and likes
 users = User.all
 posts = Post.all
-like_posts = posts[1..50]
+like_posts = posts[1..30]
 like_users = users[1..10]
-comment_posts = posts[1..50]
+comment_posts = posts[10..40]
 comment_users = users[1..10]
 
 like_posts.each do |post|

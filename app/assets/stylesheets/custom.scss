@@ -267,28 +267,6 @@ ul {
   grid-area: posts;
 }
 
-.friends-container {
-
-  margin-right: 10px;
-  border: 1px solid #dddfe2;
-  background: #fff;
-  border-radius: 4px;
-  margin: 6px;
-  padding: 8px 16px;
-
-  ul {
-    display: flex;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  li {
-    margin: 6px;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .post-comment-area {
   height: 40px;
   width: 100%;
