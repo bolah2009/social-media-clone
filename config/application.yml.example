@@ -1,0 +1,10 @@
+# Run this and set the following values: FACEBOOK_KEY and FACEBOOK_SECRET
+
+# cp config/application.yml.example config/application.yml
+
+# Facbook authentication configuration values
+#
+# ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+
+FACEBOOK_KEY: '***************'
+FACEBOOK_SECRET: '********************************'
