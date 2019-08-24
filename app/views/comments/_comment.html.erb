@@ -1,0 +1,11 @@
+<div class="comment-container">
+<div class="comment">
+    <span class="comment-user"><%= link_to comment.user.name, user_path(comment.user)%> </span>
+    <span class="comment-content"><%= comment.content %></span>
+    </div>
+  <% if comment.user.id == current_user.id %>
+    <%= link_to(comment_path(comment.id), method: :delete, class: "comment-delete") do %>
+    <%= render 'delete_icon'%>
+    <% end %>
+  <% end %>
+</div>
