@@ -1,7 +1,7 @@
 <div class="feed-container">
 
   <%= form_for(@post) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'error_messages', object: f.object %>
   <%= f.text_area :content, placeholder: "What's in your mind, #{current_user.name}?", class: "post-textarea"%>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

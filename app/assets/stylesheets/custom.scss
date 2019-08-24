@@ -246,7 +246,7 @@ ul {
     vertical-align: top;
     padding: 8px 10px;
     box-sizing: border-box;
-    height: 64px;
+    height: 110px;
     resize: none;
     overflow: auto;
     border-radius: 8px;
@@ -268,6 +268,10 @@ ul {
 
 .posts-container {
   grid-area: posts;
+}
+
+.friends-container {
+
 }
 
 .post-comment-area {
@@ -441,6 +445,35 @@ ul {
           height: 16px;
         }
       }
+    }
+  }
+}
+
+.profile {
+  width: 100%;
+  padding: 16px 16px 0 16px;
+}
+
+.user_index {
+  padding: 16px;
+
+  .user_list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+
+    flex-wrap: wrap;
+
+    .list_item {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+
+    }
+
+    .status {
+      display: none;
     }
   }
 }

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = current_user.feed
     @post = current_user.posts.build
   end
 
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
       flash[:success] = 'Post was successfully created'
       redirect_to root_url
     else
-      @posts = Post.all
+      @posts = current_user.feed
       render 'index'
     end
   end

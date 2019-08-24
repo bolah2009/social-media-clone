@@ -4,10 +4,10 @@
     ago.</time>
   <p class="post-content"><%= post.content %></p>
   <div class="count">
-    <span class="likes-count"><%= render 'shared/like_unlike', post: post %>
+    <span class="likes-count"><%= render 'like_unlike', post: post %>
       <span><%= post.likes.count if post.likes.any? %></span>
     </span>
-    <span class="comments-count"><%= render 'shared/comment_icon' %>
+    <span class="comments-count"><%= render 'comment_icon' %>
       <%= post.comments.count if post.comments.any? %></span>
   </div>
 

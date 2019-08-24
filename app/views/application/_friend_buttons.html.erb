@@ -1,0 +1,14 @@
+
+<% unless user == current_user %>
+<div class="friend-status">
+  <% if current_user.friend?(user) %>
+    <%= render 'friend_status_friends', user: user %>
+  <% elsif current_user.sent_request?(user) %>
+    <%= render 'friend_status_sent', user: user %>
+  <% elsif current_user.pending_request?(user) %>
+    <%= render 'friend_status_pending', user: user %>
+  <% else %>
+    <%= render 'friend_status_new', user: user %>
+  <% end %>
+</div>
+<% end %>

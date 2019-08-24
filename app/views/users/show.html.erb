@@ -1,17 +1,29 @@
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @user.name %>
-      </h1>
+<div class="profile">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info flex-column">
+        <%= gravatar_for @user %>
+        <h1>
+          <%= @user.name %>
+        </h1>
+
+        
+        <%= render 'friend_buttons', user: @user%>
+      
     </section>
-  </aside>
-  <div class="col-md-8">
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-    <% end %>
-  </div>
-</div>
+    <section class="friends">
+      <% if @user.friends.any? %>
+        <% render 'friendships/friends', friend: @user.friends %>
+        <% else %>
+        <% end %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <% if @user.posts.any? %>
+        <h3>Posts (<%= @user.posts.count %>)</h3>
+        <ol class="posts">
+          <%= render @posts %>
+        </ol>
+      <% end %>
+    </div>
+    <div></div>
