@@ -59,6 +59,8 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.6'
+  gem 'simplecov', require: false
+  gem 'simplecov-console'
   gem 'spring-commands-rspec'
 end
 
@@ -73,3 +75,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'travis'
