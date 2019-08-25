@@ -1,24 +1,61 @@
-# README
+[![Maintainability](https://api.codeclimate.com/v1/badges/47dde54b3f4fddb0b16e/maintainability)](https://codeclimate.com/github/bolah2009/facebook-clone/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/47dde54b3f4fddb0b16e/test_coverage)](https://codeclimate.com/github/bolah2009/facebook-clone/test_coverage)
+[![Build](https://travis-ci.org/bolah2009/facebook-clone.svg?branch=master)](https://travis-ci.org/bolah2009/facebook-clone)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# PROJECT: Facebook Clone
 
-Things you may want to cover:
+This is the final project of the Main Rails curriculum at [Microverse](https://www.microverse.org/) - @microverseinc
 
-* Ruby version
+- The objective is to build a facebook clone with core features of the platform – users, profiles, “friending”, posts, news feed, and “liking”. Sign-in with the real Facebook by using Omniauth and Devise is also implemented.
 
-* System dependencies
+#### [Assignment link](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 
-* Configuration
+#### [View in broswer](https://f-b-clone.herokuapp.com/)
 
-* Database creation
+## Prerequisites
 
-* Database initialization
+> Ruby: 2.6.3  
+> Rails: 5.2.3
 
-* How to run the test suite
+## Usage (Development)
 
-* Services (job queues, cache servers, search engines, etc.)
+- Clone the repo and run the app.
 
-* Deployment instructions
+```
+   git clone https://github.com/bolah2009/facebook-clone.git
+   cd facebook-clone
+   bundle install
+   rails db:create
+   rails db:migrate
+   rspec #run tests
+   rails server #run server
+   open localhost:3000 on browser
+```
 
-* ...
+## How to run the test suite
+
+- run tests:
+  > `rpsec --format documentation`
+- view test coverage:
+  > `open coverage/index.html`
+
+## Contributing
+
+If you are working on adding features, PRs, or bugfixes, this section should help get you going.
+
+1. Fork it
+2. Create your feature branch
+   > `git checkout -b my-new-feature`
+3. Make sure all tests are passing
+   > `bundle install`  
+   > `rspec`
+4. Commit your changes
+   > `git commit -am 'Add some feature'`
+5. Push to the branch
+   > `git push origin my-new-feature`
+6. Create new Pull Request
+
+## Authors
+
+- [@TorresChief](https://github.com/TorresChief)
+- [@bolah2009](https://github.com/bolah2009/)

@@ -20,7 +20,6 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - bundle install
-  - rails db:create
   - rails db:migrate
   - rspec
 after_script:
