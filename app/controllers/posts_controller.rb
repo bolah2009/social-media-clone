@@ -2,7 +2,8 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :post_id, only: %i[destroy edit update]
+  # before_action :post_id, only: %i[destroy edit update]
+  before_action :correct_user, only: %i[destroy edit update]
 
   def index
     @posts = current_user.feed
@@ -27,21 +28,15 @@ class PostsController < ApplicationController
       flash[:success] = 'Post updated successfully'
       redirect_to root_path
     else
-      flash.now[:warning] = 'Somenthing went wrong, post not edited'
+      flash.now[:warning] = 'Something went wrong, post not edited'
       render 'edit'
     end
   end
 
   def destroy
-    if @post
-      @post.delete
-      flash[:success] = 'Post deleted successfully'
-      redirect_to root_url
-    else
-      flash[:warning] = "Coundn't detele the post"
-      @posts = current_user.feed
-      render 'index'
-    end
+    @post.delete
+    flash[:success] = 'Post deleted successfully'
+    redirect_to root_url
   end
 
   private
@@ -52,5 +47,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def correct_user
+    post_id
+    return if @post && current_user == @post.user
+
+    redirect_to root_path
   end
 end
