@@ -1,7 +1,24 @@
 <div class="posts">
-  <h3 class="post-user-name"><%=link_to post.user.name, user_path(post.user)%></h3>
-  <time class="post-time" datetime="<%=post.created_at%>"><%= time_ago_in_words(post.created_at) %>
-    ago.</time>
+  <header>
+    <div class="name-container">
+      <h3 class="post-user-name"><%=link_to post.user.name, user_path(post.user)%></h3>
+      <time class="post-time" datetime="<%=post.created_at%>"><%= time_ago_in_words(post.created_at) %>
+        ago.
+      </time>
+    </div>
+    <% if post.user == current_user %>
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-content">
+          <%= link_to 'Edit', edit_post_path(post.id) %>
+          <%= link_to 'Delete', post_path(post.id), method: :delete %>
+        </div>
+      </div>
+    <% end %>
+
+  </header>
   <p class="post-content"><%= post.content %></p>
   <div class="count">
     <span class="likes-count"><%= render 'like_unlike', post: post %>

@@ -1,0 +1,10 @@
+<div class="container">
+  <h3>Update your post</h3>
+  <div class="row">
+    <%= form_for @post, html: { class: 'col-md-6', method: :patch } do |f| %>
+    <%= render 'error_messages', object: f.object %>
+    <%= f.text_area :content, class: "post-textarea"%>
+    <%= f.submit "Update post", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

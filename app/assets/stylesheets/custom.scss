@@ -23,7 +23,7 @@ ul {
   height: 42px;
 
   .small-logo {
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/v_BCN1X0uyo.png);
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/v_BCN1X0uyo.png");
     background-repeat: no-repeat;
     background-size: auto;
     background-position: -125px -304px;
@@ -109,14 +109,15 @@ ul {
       padding-bottom: 4px;
     }
 
-    .remember,
-    .forget {
+    .forget,
+    .remember {
       display: flex;
       justify-content: flex-start;
       align-content: baseline;
       padding-top: 4px;
-      label,
-      a {
+
+      a,
+      label {
         color: #98a9ca;
       }
     }
@@ -124,6 +125,7 @@ ul {
 
   .actions {
     padding-left: 14px;
+
     .button {
       border: 1px solid;
       color: #fff;
@@ -223,12 +225,23 @@ ul {
 .feed-container {
   display: grid;
   box-sizing: border-box;
-  margin: 20px 20px 0 20px;
+  margin: 20px 20px 0;
   grid-template-columns: 30% 20% 20% 30%;
   grid-template-rows: auto;
-  grid-template-areas:
-    " . form form . "
-    " friends-container posts posts . ";
+  grid-template-areas: " . form form . " " friends-container posts posts . ";
+}
+
+.post-textarea {
+  border: 1px solid #fff;
+  margin: 4px 0;
+  vertical-align: top;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  height: 110px;
+  resize: none;
+  overflow: auto;
+  border-radius: 8px;
+  width: 100%;
 }
 
 .new_post {
@@ -236,19 +249,6 @@ ul {
   flex-direction: column;
   grid-area: form;
   margin: 4px;
-
-  .post-textarea {
-    border: 1px solid #fff;
-    margin: 4px 0;
-    vertical-align: top;
-    padding: 8px 10px;
-    box-sizing: border-box;
-    height: 110px;
-    resize: none;
-    overflow: auto;
-    border-radius: 8px;
-    width: 100%;
-  }
 
   ::placeholder {
     font-size: 24px;
@@ -278,6 +278,54 @@ ul {
   border-radius: 4px;
   margin: 4px;
   padding: 8px 16px;
+
+  header {
+    display: flex;
+
+    .name-container {
+      flex-grow: 1;
+    }
+
+    .delete-link {
+      flex-grow: 0;
+    }
+
+    .dropbtn {
+      background-color: white;
+      color: #007bff;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
 
   .post-user-name {
     font-size: 14px;
@@ -310,6 +358,7 @@ ul {
     .likes-count {
       display: flex;
     }
+
     .like-wrapper {
       padding: 0;
       display: inline-block;
@@ -330,8 +379,8 @@ ul {
         }
       }
 
-      .new_like,
-      .edit_like {
+      .edit_like,
+      .new_like {
         padding: 0;
         border: none;
         background-color: none;
@@ -394,8 +443,8 @@ ul {
     flex-direction: row;
     flex-basis: auto;
 
-    textarea.new-comment,
-    .button {
+    .button,
+    textarea.new-comment {
       background-color: #dddfe2;
       border: 1px solid;
       border-color: #999;
@@ -444,7 +493,7 @@ ul {
 
 .profile {
   width: 100%;
-  padding: 16px 16px 0 16px;
+  padding: 16px 16px 0;
 }
 
 .user_index {
@@ -455,14 +504,12 @@ ul {
     padding: 0;
     width: 100%;
     display: flex;
-
     flex-wrap: wrap;
 
     .list_item {
       display: flex;
       flex-direction: column;
       padding: 8px;
-
     }
 
     .status {
