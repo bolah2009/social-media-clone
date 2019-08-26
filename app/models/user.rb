@@ -19,7 +19,16 @@ class User < ApplicationRecord
   has_many :sent_friends, through: :sent_requests, source: :friend
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.password = Devise.friendly_token[0, 20]
+      user.image = auth.info.image
+    end
+  end
 
   validates :name, presence: true
 
@@ -35,15 +44,15 @@ class User < ApplicationRecord
     pending_requests.where(user_id: user.id).any?
   end
 
-  def friend?(user)
-    friends.include?(user)
-  end
-
   def feed
     Post.where(user_id: friend_ids + [id])
   end
 
   def pending_friends_notification
     pending_friends.limit(5)
+  end
+
+  def friend?(user)
+    friends.include?(user)
   end
 end
