@@ -1,63 +1,87 @@
 <main class="guest-page">
 
+  <section class="page-info">
+    <h1>
+      Connect with friends and the<br>world around you on Facebook.
+    </h1>
 
-<section class="page-info">
-<h1> Connect with friends and the<br>world around you on Facebook. </h1>
-
-<div class="part">
-<div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851565_602269956474188_918638970_n.png" alt="" ></div>
-<div><strong> See photos and updates </strong><span> from friends in News Feed. </span></div>
-</div>
-
-<div class="part">
-<div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851585_216271631855613_2121533625_n.png" alt=""></div>
-<div><strong> Share what's new </strong><span> in your life on your Timeline. </span></div>
-</div>
-
-<div class="part">
-<div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851558_160351450817973_1678868765_n.png" alt=""></div>
-<div><strong> Find more </strong><span> of what you're looking for with Graph Search. </span></div>
-</div>
-
-</section>
-
-<section class="sign-up">
-<h1>Sign Up</h1>
-
-<h2>It’s free and always will be.</h2>
-
-<%= form_for(:user, url: registration_path(:user)) do |f| %>
- <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <div class="first-name">
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "new_user_name",  placeholder: "First Name" %>
+    <div class="part">
+      <div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851565_602269956474188_918638970_n.png" alt=""></div>
+      <div>
+        <strong>
+          See photos and updates
+        </strong>
+        <span>
+          from friends in News Feed.
+        </span>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "new_user_email", placeholder: "Your Email" %>
-  </div>
+    <div class="part">
+      <div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851585_216271631855613_2121533625_n.png" alt=""></div>
+      <div>
+        <strong>
+          Share what's new
+        </strong>
+        <span>
+          in your life on your Timeline.
+        </span>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", id: "new_user_password", placeholder: "New Password" %>
-  </div>
+    <div class="part">
+      <div class="img-wrapper"><img class="img" src="https://web.archive.org/web/20140312172235im_/https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.2365/851558_160351450817973_1678868765_n.png" alt=""></div>
+      <div>
+        <strong>
+          Find more
+        </strong>
+        <span>
+          of what you're looking for with Graph Search.
+        </span>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "new_user_password_confirmation", placeholder: "Re-enter Your Password" %>
-  </div>
+  </section>
 
-  <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  <section class="sign-up">
+    <h1>Sign Up</h1>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end %>
+    <h2>It’s free and always will be.</h2>
+
+    <%= form_for(:user, url: registration_path(:user)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+      <div class="first-name">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "new_user_name", placeholder: "First Name" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "new_user_email", placeholder: "Your Email" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "new-password", id: "new_user_password", placeholder: "New Password" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "new_user_password_confirmation", placeholder: "Re-enter Your Password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "btn btn-primary" %>
+
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), class: "fb-log-in" do %>
+          <span class="logo"></span><span class="text">Log in With Facebook</span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 </section>
 
 </main>
-<footer> </footer>
+<footer></footer>

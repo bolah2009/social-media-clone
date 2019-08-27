@@ -1,26 +1,41 @@
-<header>
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
+  <header class="main-header signed-in">
     <nav class="site-navbar signed-in">
       <div class="nav-content">
         <%= link_to "Home", root_path, class: "small-logo" %>
 
         <%= render 'layouts/notification_dropdown' %>
 
-        <%= link_to "All Users", users_path %>
+        <%= link_to users_path, title: "All Users" do %>
+        <i class="fas fa-users"></i>
+      <% end %>
 
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete%>
+      <%= button_to destroy_user_session_path, method: :delete, title: "Sign Out" do %>
+      <i class="fas fa-sign-out-alt"></i>
+    <% end %>
 
-      </div>
-    </nav>
-
-  <% else %>
-
-    <nav class="site-navbar">
-      <div class="nav-content">
-        <%= link_to "Home", root_path, class: "logo navbar-brand" %>
-        <%= render 'new_session' %>
-      </div>
-    </nav>
-  <% end %>
-
+  </div>
+</nav>
 </header>
+<% else %>
+<header class="main-header">
+<nav class="site-navbar">
+  <div class="nav-content guest">
+    <%= link_to "Home", root_path, class: "logo navbar-brand" %>
+    <%= render 'new_session' %>
+  </div>
+
+<div class="nav-content-small">
+  <div class="small">
+    <%= link_to "Home", root_path, class: "logo navbar-brand" %>
+    <button class="btn" title="Sign In" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Sign In
+    </button>
+  </div>
+  <div class="collapse" id="collapseExample">
+      <%= render 'new_session' %>
+  </div>
+</div>
+</nav>
+</header>
+<% end %>

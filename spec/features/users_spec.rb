@@ -41,22 +41,23 @@ RSpec.feature 'Users', type: :feature do
   let(:user) { FactoryBot.create(:user) }
   scenario 'log in a valid user' do
     visit root_path
+    within('.nav-content') do
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
 
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-
-    click_button 'Log in'
-
+      click_button 'Log in'
+    end
     expect(page).to have_content 'Signed in successfully.'
   end
 
   scenario 'log in with invalid user' do
     visit root_path
+    within('.nav-content') do
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: 'invalid password'
 
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: 'invalid password'
-
-    click_button 'Log in'
+      click_button 'Log in'
+    end
 
     expect(page).to have_content 'Invalid Email or password.'
   end
