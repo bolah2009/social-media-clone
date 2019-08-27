@@ -1,0 +1,7 @@
+<%= form_for current_user.likes_given.find_by(post_id: post.id), 
+             html: { method: :delete } do |f| %>
+<div><%= hidden_field_tag :post_id, post.id %></div>
+  <%= f.button name: "unlike-button"  do %>
+    <%= render 'like_icon' %> 
+  <% end %>
+<% end %>

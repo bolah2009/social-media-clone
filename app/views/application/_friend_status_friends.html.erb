@@ -1,0 +1,8 @@
+<p class="status">You are Friends with
+  <%= user.name %>
+</p>
+
+<% friendship = current_user.friendships.find_by(friend_id: user.id) %>
+  <%= form_for friendship, html: { method: :delete } do |f| %>
+  <%= f.submit "Unfriend", class: "btn btn-danger" %>
+<% end %>

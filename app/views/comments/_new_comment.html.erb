@@ -1,0 +1,11 @@
+  <%= form_for Comment.new do |f| %>
+  <%= render 'error_messages', object: f.object %>
+    <%= f.text_area :content, placeholder: "Write a comment...",
+                              class: "new-comment" %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <div class="button">
+    <%= f.button name: "comment-button" do %>
+      <%= render 'comment_icon' %>
+    <% end %>
+    </div>
+  <% end %>
