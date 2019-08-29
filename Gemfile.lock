@@ -66,6 +66,10 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    codecov (0.1.14)
+      json
+      simplecov
+      url
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -289,6 +293,7 @@ GEM
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
+    url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -312,6 +317,7 @@ DEPENDENCIES
   bootstrap
   byebug
   capybara
+  codecov
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails

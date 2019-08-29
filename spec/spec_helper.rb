@@ -2,7 +2,11 @@
 
 require 'simplecov'
 require 'simplecov-console'
-SimpleCov.formatter = SimpleCov::Formatter::Console
+require 'codecov'
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+                                                                  SimpleCov::Formatter::Console,
+                                                                  SimpleCov::Formatter::Codecov
+                                                                ])
 SimpleCov.start :rails do
   add_filter ['app/channels', 'app/jobs/', 'app/mailers/']
   add_group 'Models', 'app/models'
