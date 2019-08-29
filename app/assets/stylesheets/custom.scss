@@ -119,11 +119,10 @@ a {
 }
 
 a.logo.navbar-brand {
-  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/BMqLtfVG5E7.png");
+  background-image: url("https://res.cloudinary.com/bolaah/image/upload/v1567071750/github-microverse-project/rails-final/facebook.png");
   width: 170px;
   height: 34px;
-  background-position: 0 0;
-  background-repeat: no-repeat;
+  background-size: 100% 100%;
   color: white;
   font-size: 0;
 }
@@ -189,6 +188,8 @@ a.logo.navbar-brand {
 
     .button {
       border: 1px solid;
+      padding: 4px;
+      border-radius: 4px;
       color: #fff;
       background-color: #5b74a8;
       border-color: #29447e #29447e #1a356e;
@@ -210,6 +211,7 @@ a.logo.navbar-brand {
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding: 4px;
 
     .part {
       display: flex;
@@ -231,6 +233,8 @@ a.logo.navbar-brand {
   }
 
   .sign-up {
+    padding: 4px;
+
     h1 {
       font-size: 36px;
       margin-bottom: 5px;
@@ -694,6 +698,35 @@ a.logo.navbar-brand {
           font-weight: bold;
           color: #fff;
           font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .log-in-form {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .guest-page {
+    .sign-up {
+      width: 100%;
+
+      .field input {
+        width: 100%;
+      }
+
+      .actions {
+        flex-direction: column;
+
+        .fb-log-in {
+          justify-content: space-around;
+
+          span.text {
+            padding: 0;
+          }
         }
       }
     }
