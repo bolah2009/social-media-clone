@@ -1,19 +1,22 @@
-<div class="dropdown show">
-  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Notifications
-  </a>
+<% pending_friends = current_user.pending_friends_notification %>
+  <div class="dropdown show" title="Notifications">
+    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="far fa-bell"></i>
+      <% if pending_friends.any? %>
+        <span class="badge"><%= pending_friends.count %></span>
+        <span class="sr-only">pending request(s)</span>
+      <% end %>
+    </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-    <% pending_friends = current_user.pending_friends_notification %>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
       <% if pending_friends.any? %>
         <% pending_friends.each do |user| %>
           <%= link_to user.name, user, class: 'dropdown-item' %>
         <% end %>
-          <%= link_to 'Show all', pending_requests_path, class: 'dropdown-item' %>
+        <%= link_to 'See all', pending_requests_path, class: 'dropdown-item' %>
       <% else %>
-        No pending request
+      <div class='dropdown-item'> No pending request </div>
       <% end %>
 
     </div>
