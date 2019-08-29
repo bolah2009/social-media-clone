@@ -1,5 +1,5 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/47dde54b3f4fddb0b16e/maintainability)](https://codeclimate.com/github/bolah2009/facebook-clone/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/47dde54b3f4fddb0b16e/test_coverage)](https://codeclimate.com/github/bolah2009/facebook-clone/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/430cd18ef631c24a0c5f/maintainability)](https://codeclimate.com/github/bolah2009/facebook-clone/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/430cd18ef631c24a0c5f/test_coverage)](https://codeclimate.com/github/bolah2009/facebook-clone/test_coverage)
 [![Build](https://travis-ci.org/bolah2009/facebook-clone.svg?branch=master)](https://travis-ci.org/bolah2009/facebook-clone)
 
 # PROJECT: Facebook Clone
