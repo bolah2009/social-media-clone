@@ -57,5 +57,5 @@ If you are working on adding features, PRs, or bugfixes, this section should hel
 
 ## Authors
 
-- [@TorresChief](https://github.com/TorresChief)
+- [@Torres-ssf](https://github.com/Torres-ssf)
 - [@bolah2009](https://github.com/bolah2009/)
