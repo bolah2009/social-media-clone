@@ -7,15 +7,17 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes_given, foreign_key: :user_id, class_name: 'Like',
-                         dependent: :destroy
+                         dependent: :destroy, inverse_of: 'user'
+
   has_many :friendships, dependent: :destroy
   has_many :friends, -> { where('confirmed = ?', true) }, through: :friendships
 
   has_many :pending_requests, -> { where(confirmed: false).order(created_at: :desc) },
-           foreign_key: :friend_id, class_name: 'Friendship'
+           foreign_key: :friend_id, class_name: 'Friendship', inverse_of: 'user'
   has_many :pending_friends, through: :pending_requests, source: :user
 
-  has_many :sent_requests, -> { where confirmed: false }, foreign_key: :user_id, class_name: 'Friendship'
+  has_many :sent_requests, -> { where confirmed: false },
+           foreign_key: :user_id, class_name: 'Friendship', inverse_of: 'user'
   has_many :sent_friends, through: :sent_requests, source: :friend
 
   devise :database_authenticatable, :registerable,

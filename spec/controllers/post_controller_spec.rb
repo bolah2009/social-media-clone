@@ -5,8 +5,9 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:user) { FactoryBot.create(:user, :with_posts) }
   let(:other_user) { FactoryBot.create(:user) }
+
   describe '#index' do
-    context 'as an authenticated user' do
+    context 'when a user is authenticated' do
       it 'responds successfully' do
         sign_in user
         get :index
@@ -20,7 +21,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    context 'as a guest' do
+    context 'when a user is a guest' do
       it 'redirects to the sign-in page' do
         get :index
         expect(response).to redirect_to '/users/sign_in'
@@ -35,7 +36,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#create' do
     let(:post_params) { FactoryBot.attributes_for(:post) }
-    context 'as an authenticated user' do
+
+    context 'when a user is authenticated' do
       it 'adds a post' do
         sign_in user
         expect do
@@ -44,7 +46,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    context 'as a guest' do
+    context 'when a user is a guest' do
       it 'returns a 302 response' do
         post :create, params: { post: post_params }
         expect(response).to have_http_status '302'
@@ -59,7 +61,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#destroy' do
     let!(:post) { FactoryBot.create(:post, user_id: user.id) }
-    context 'as an authenticated user' do
+
+    context 'when a user is authenticated' do
       it 'delete a post' do
         sign_in user
         expect do
@@ -83,7 +86,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    context 'as a guest' do
+    context 'when a user is a guest' do
       it 'returns a 302 response' do
         delete :destroy, params: { id: post.id }
         expect(response).to have_http_status '302'
@@ -100,7 +103,7 @@ RSpec.describe PostsController, type: :controller do
       let(:post_params) { FactoryBot.attributes_for(:post, content: 'Updated post') }
       let(:invalid_post_params) { FactoryBot.attributes_for(:post, content: '') }
 
-      context 'as an authenticated user can' do
+      context 'when a user is authenticated' do
         it 'edit post' do
           sign_in user
           expect do
@@ -118,11 +121,11 @@ RSpec.describe PostsController, type: :controller do
         end
       end
 
-      context 'as a guest' do
+      context 'when a user is a guest' do
         it 'returns a 302 response' do
           expect do
             patch :update, params: { post: post_params }
-            expect(flash[:success]).to_not be_present
+            expect(flash[:success]).not_to be_present
             expect(response).to have_http_status '302'
           end
         end
@@ -130,7 +133,7 @@ RSpec.describe PostsController, type: :controller do
         it 'redirects to the sign-in page' do
           expect do
             patch :update, params: { post: post_params }
-            expect(flash[:success]).to_not be_present
+            expect(flash[:success]).not_to be_present
             expect(response).to redirect_to '/users/sign_in'
           end
         end

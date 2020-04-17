@@ -2,11 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Friendships', type: :feature do
+RSpec.describe 'Friendships', type: :feature do
   let(:thor) { FactoryBot.create(:user) }
   let(:hulk) { FactoryBot.create(:user) }
   let(:friendship) { FactoryBot.create(:friendship, user_id: thor.id, friend_id: hulk.id) }
-  scenario 'user can send invitation to another user' do
+
+  it 'user can send invitation to another user' do
     sign_in thor
     visit user_path(hulk)
     expect do
@@ -14,11 +15,11 @@ RSpec.feature 'Friendships', type: :feature do
       expect(page).to have_content 'Send Friend Request'
       click_button 'Send Friend Request'
       expect(page).to have_content 'Friend request sent'
-      expect(page). to have_content 'Cancel Friend Request'
+      expect(page).to have_content 'Cancel Friend Request'
     end
   end
 
-  scenario 'user can accept friend request' do
+  it 'user can accept friend request' do
     friendship.save
     sign_in hulk
     visit user_path(thor)
@@ -31,7 +32,7 @@ RSpec.feature 'Friendships', type: :feature do
     end
   end
 
-  scenario 'user can reject friend request' do
+  it 'user can reject friend request' do
     friendship.save
     sign_in hulk
     visit user_path(thor)
@@ -41,7 +42,7 @@ RSpec.feature 'Friendships', type: :feature do
     end
   end
 
-  scenario 'user can undo the friendship' do
+  it 'user can undo the friendship' do
     friendship.confirm_friend
     sign_in thor
     visit user_path(hulk)

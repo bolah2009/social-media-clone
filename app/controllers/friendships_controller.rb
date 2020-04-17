@@ -9,19 +9,19 @@ class FriendshipsController < ApplicationController
     return unless friendship.save
 
     flash[:success] = 'Friend request sent'
-    redirect_to request.referrer || root_path
+    redirect_to request.referer || root_path
   end
 
   def destroy
     @friendship&.destroy_friendship
-    redirect_to request.referrer || root_path
+    redirect_to request.referer || root_path
   end
 
   def update
     return unless @friendship.confirm_friend
 
     flash[:success] = 'Friend request accepted'
-    redirect_to request.referrer || root_path
+    redirect_to request.referer || root_path
   end
 
   def pending

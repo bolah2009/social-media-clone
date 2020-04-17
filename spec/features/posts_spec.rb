@@ -2,9 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Posts', type: :feature do
+RSpec.describe 'Posts', type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  scenario 'user sign in and creates a valid post' do
+
+  it 'user sign in and creates a valid post' do
     sign_in user
 
     visit root_path

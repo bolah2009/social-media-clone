@@ -8,14 +8,17 @@ RSpec.describe User, type: :model do
   let(:other_post) { FactoryBot.create(:post) }
   let(:friend_1) { FactoryBot.create(:user) }
   let(:friend_2) { FactoryBot.create(:user) }
+
   it 'is valid with a name, email, and password' do
     expect(FactoryBot.build(:user)).to be_valid
   end
+
   it 'is invalid without a name' do
     user = FactoryBot.build(:user, name: nil)
     user.valid?
     expect(user.errors[:name]).to include("can't be blank")
   end
+
   it 'is invalid without an email address' do
     user = FactoryBot.build(:user, email: nil)
     user.valid?
@@ -29,7 +32,7 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include('has already been taken')
   end
 
-  context '#posts' do
+  describe '#posts' do
     it 'brings all posts' do
       expect(user.posts).to be_empty
       FactoryBot.create_list(:post, 3, user_id: user.id)
@@ -45,7 +48,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#likes_given' do
+  describe '#likes_given' do
     it 'brings all likes given' do
       expect(user.likes_given).to be_empty
       FactoryBot.create_list(:like, 75, user_id: user.id, post_id: post.id)
@@ -53,17 +56,17 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#friends' do
+  describe '#friends' do
     it 'brings all friends' do
       expect(user.friends).to be_empty
       user.friendships.create(friend_id: friend_1.id).confirm_friend
-      expect(user.friends).to_not be_empty
+      expect(user.friends).not_to be_empty
       user.friendships.create(friend_id: friend_2.id).confirm_friend
       expect(user.friends.count).to eq 2
     end
   end
 
-  context '#pending_requests' do
+  describe '#pending_requests' do
     it 'brings all pending_requests as Friendship model' do
       expect(user.pending_requests).to be_empty
       friend_1.friendships.create(friend_id: user.id)
@@ -74,18 +77,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#pending_friends' do
+  describe '#pending_friends' do
     it 'brings all pending requests as User model' do
       expect(user.pending_friends).to be_empty
       friend_1.friendships.create(friend_id: user.id)
       friend_2.friendships.create(friend_id: user.id)
       expect(user.pending_friends.count).to eq 2
-      expect(user.pending_friends.first).to be_a User
-      expect(user.pending_friends.second).to be_a User
+      expect(user.pending_friends.first).to be_a described_class
+      expect(user.pending_friends.second).to be_a described_class
     end
   end
 
-  context '#sent_requests' do
+  describe '#sent_requests' do
     it 'brings all sent request as Friendship model' do
       expect(user.sent_requests).to be_empty
       user.friendships.create(friend_id: friend_1.id)
@@ -96,16 +99,16 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#sent_friends' do
+  describe '#sent_friends' do
     it 'brings all sent requests as User model' do
       expect(user.sent_friends).to be_empty
       user.friendships.create(friend_id: friend_1.id)
       expect(user.sent_friends.count).to eq 1
-      expect(user.sent_friends.first).to be_a User
+      expect(user.sent_friends.first).to be_a described_class
     end
   end
 
-  context '#liked?' do
+  describe '#liked?' do
     it 'returns true if a user liked a specific post' do
       user.likes_given.create(post_id: post.id)
       expect(user.liked?(post)).to eq true
@@ -113,7 +116,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#sent_request?' do
+  describe '#sent_request?' do
     it 'returns true if a user sent request given a specific user' do
       user.friendships.create(friend_id: friend_1.id)
       expect(user.sent_request?(friend_1)).to eq true
@@ -121,7 +124,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#pending_friends' do
+  describe '#pending_request?' do
     it 'returns true if a user receive request given a specific user' do
       friend_1.friendships.create(friend_id: user.id)
       expect(user.pending_request?(friend_1)).to eq true
@@ -129,7 +132,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#friend?' do
+  describe '#friend?' do
     it 'returns true if a user has friendship confirmed with another user' do
       user.friendships.create(friend_id: friend_1.id).confirm_friend
       user.friendships.create(friend_id: friend_2.id)
@@ -138,7 +141,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#feed' do
+  describe '#feed' do
     it 'return all posts from the user and his friends' do
       FactoryBot.create_list(:post, 7, user_id: user.id)
       FactoryBot.create_list(:post, 9, user_id: friend_1.id)

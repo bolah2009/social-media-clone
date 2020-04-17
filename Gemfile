@@ -62,6 +62,13 @@ group :development, :test do
   gem 'spring-commands-rspec'
 end
 
+# code QA
+gem 'rubocop'
+gem 'rubocop-faker'
+gem 'rubocop-performance'
+gem 'rubocop-rails'
+gem 'rubocop-rspec'
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'

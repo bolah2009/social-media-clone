@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Comments', type: :feature do
+RSpec.describe 'Comments', type: :feature do
   let(:user) { FactoryBot.create(:user, :with_posts) }
   let(:other_user) { FactoryBot.create(:user) }
   let(:post) { user.posts.first }
@@ -12,7 +12,7 @@ RSpec.feature 'Comments', type: :feature do
     visit root_path
   end
 
-  scenario 'user can write valid comments on posts' do
+  it 'user can write valid comments on posts' do
     expect do
       fill_in 'Write a comment...', match: :first, with: 'Yippee ki-yay'
       click_button 'comment-button', match: :first
@@ -29,17 +29,17 @@ RSpec.feature 'Comments', type: :feature do
     end.to change(user.comments, :count).by(0)
   end
 
-  scenario 'user can delete comments' do
+  it 'user can delete comments' do
     expect do
       fill_in 'Write a comment...', match: :first, with: 'Yippee ki-yay'
       click_button 'comment-button', match: :first
       expect(page).to have_content 'Yippee ki-yay'
       find('.comment-delete').click
-      expect(page).to_not have_content 'Yippee ki-yay'
+      expect(page).not_to have_content 'Yippee ki-yay'
     end.to change(user.comments, :count).by(0)
   end
 
-  scenario "user can't delete other user comments" do
+  it "user can't delete other user comments" do
     fill_in 'Write a comment...', match: :first, with: 'Yippee ki-yay'
     click_button 'comment-button', match: :first
     expect(page).to have_content 'Yippee ki-yay'
@@ -51,7 +51,7 @@ RSpec.feature 'Comments', type: :feature do
 
     expect do
       expect(page).to have_content 'Yippee ki-yay'
-      expect(page).to_not find('.comment-delete')
+      expect(page).not_to find('.comment-delete')
     end
   end
 end

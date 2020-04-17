@@ -1,33 +1,61 @@
-AllCops:
-  Exclude:
-    - "bin/*"
-    - "db/*"
-    - "config/*"
-    - "Guardfile"
-    - "Rakefile"
-  DisplayCopNames: true
+inherit_from: .rubocop_todo.yml
 
-Metrics/LineLength:
-  Max: 120
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-faker
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'config/*'
+    - 'Guardfile'
+    - 'Rakefile'
+  RSpec:
+    Patterns:
+      - '_spec.rb$'
+
+Rails:
+  Enabled: true
+
 Metrics/MethodLength:
-  Include: ["app/controllers/*"]
+  Include: ['app/controllers/*']
   Max: 20
 Metrics/AbcSize:
-  Include: ["app/controllers/*"]
+  Include: ['app/controllers/*']
   Max: 30
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'feature', 'context']
+
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
   AllowForAlignment: false
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+
+Faker/DeprecatedArguments:
+  Enabled: true

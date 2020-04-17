@@ -20,19 +20,21 @@ RSpec.describe CallbacksController, type: :controller do
   end
 
   describe '#facebook' do
-    context '#annonymous user' do
+    describe '#annonymous user' do
       context "when facebook email doesn't exist in the system" do
-        before(:each) do
+        before do
           start_env_for_omniauth
           get :facebook
           @user = User.where(email: 'ghost@example.com')
         end
 
-        it { expect(@user).to_not be_nil }
-        it 'should create authentication with facebook id' do
+        it { expect(@user).not_to be_nil }
+
+        it 'creates authentication with facebook id' do
           authentication = @user.where(provider: 'facebook', uid: '1234567').first
-          expect(authentication).to_not be_nil
+          expect(authentication).not_to be_nil
         end
+
         it { expect be_user_signed_in }
         it { expect(response).to redirect_to root_path }
       end
@@ -47,20 +49,20 @@ RSpec.describe CallbacksController, type: :controller do
       end
     end
 
-    context '#logged in user' do
+    describe '#logged in user' do
       context "when user don't have facebook authentication" do
-        before(:each) do
+        before do
           start_env_for_omniauth
           user = FactoryBot.create(:user, email: 'user@example.com')
           sign_in user
           get :facebook
         end
 
-        it 'should add facebook authentication to current user' do
+        it 'adds facebook authentication to current user' do
           user = User.where(email: 'user@example.com').first
-          expect(user).to_not be_nil
+          expect(user).not_to be_nil
           fb_user = User.where(provider: 'facebook').first
-          expect(fb_user).to_not be_nil
+          expect(fb_user).not_to be_nil
           expect(fb_user.uid).to eq('1234567')
         end
 
@@ -69,7 +71,7 @@ RSpec.describe CallbacksController, type: :controller do
       end
 
       context 'when user already connect with facebook' do
-        before(:each) do
+        before do
           start_env_for_omniauth
           user = FactoryBot.create(:user, email: 'ghost@example.com')
           user.update(provider: 'facebook', uid: '1234567')
@@ -77,9 +79,9 @@ RSpec.describe CallbacksController, type: :controller do
           get :facebook
         end
 
-        it 'should not add new facebook authentication' do
+        it 'does not add new facebook authentication' do
           user = User.where(email: 'ghost@example.com').first
-          expect(user).to_not be_nil
+          expect(user).not_to be_nil
           expect(User.where(provider: 'facebook').count).to be(1)
         end
 

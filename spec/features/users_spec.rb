@@ -2,11 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Users', type: :feature do
+RSpec.describe 'Users', type: :feature do
   let(:params) { FactoryBot.attributes_for(:user) }
   let!(:dup_user) { FactoryBot.create(:user) }
 
-  scenario 'create a new user with valid entries' do
+  let(:user) { FactoryBot.create(:user) }
+
+  it 'create a new user with valid entries' do
     visit root_path
 
     fill_in 'new_user_name', with: params[:name]
@@ -20,7 +22,7 @@ RSpec.feature 'Users', type: :feature do
     end.to change(User.all, :count).by(1)
   end
 
-  scenario 'create a new user with invalid entries' do
+  it 'create a new user with invalid entries' do
     visit root_path
 
     fill_in 'new_user_name', with: ''
@@ -38,8 +40,7 @@ RSpec.feature 'Users', type: :feature do
     end.to change(User.all, :count).by(0)
   end
 
-  let(:user) { FactoryBot.create(:user) }
-  scenario 'log in a valid user' do
+  it 'log in a valid user' do
     visit root_path
     within('.nav-content') do
       fill_in 'user_email', with: user.email
@@ -50,7 +51,7 @@ RSpec.feature 'Users', type: :feature do
     expect(page).to have_content 'Signed in successfully.'
   end
 
-  scenario 'log in with invalid user' do
+  it 'log in with invalid user' do
     visit root_path
     within('.nav-content') do
       fill_in 'user_email', with: user.email

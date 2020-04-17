@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    if @post.update_attributes(post_params)
+    if @post.update(post_params)
       flash[:success] = 'Post updated successfully'
       redirect_to root_path
     else

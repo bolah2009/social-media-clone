@@ -24,7 +24,7 @@ class Friendship < ApplicationRecord
 
   def destroy_mutual
     Friendship.where('user_id = ? AND friend_id = ?',
-                     friend.id, user.id).each(&:destroy)
+                     friend.id, user.id).find_each(&:destroy)
   end
 
   def friend_cannot_be_user

@@ -22,13 +22,13 @@ RSpec.describe CommentsController, type: :controller do
     context 'as a guest' do
       it 'returns a 302 response' do
         post :create, params: { comment: comment_params }
-        expect(flash[:success]).to_not be_present
+        expect(flash[:success]).not_to be_present
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
         post :create, params: { comment: comment_params }
-        expect(flash[:success]).to_not be_present
+        expect(flash[:success]).not_to be_present
         expect(response).to redirect_to '/users/sign_in'
       end
     end
@@ -48,13 +48,13 @@ RSpec.describe CommentsController, type: :controller do
     context 'as a guest' do
       it 'returns a 302 response' do
         delete :destroy, params: { id: comment.id }
-        expect(flash[:success]).to_not be_present
+        expect(flash[:success]).not_to be_present
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
         delete :destroy, params: { id: comment.id }
-        expect(flash[:success]).to_not be_present
+        expect(flash[:success]).not_to be_present
         expect(response).to redirect_to '/users/sign_in'
       end
     end

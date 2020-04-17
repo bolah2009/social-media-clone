@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Likes', type: :feature do
+RSpec.describe 'Likes', type: :feature do
   let(:user) { FactoryBot.create(:user, :with_posts) }
   let(:other_user) { FactoryBot.create(:user) }
   let(:friendship) { FactoryBot.create(:friendship, user_id: user.id, friend_id: other_user.id) }
 
-  scenario 'user can like and unlike posts' do
+  it 'user can like and unlike posts' do
     friendship.confirm_friend
     sign_in other_user
     visit root_path
@@ -15,7 +15,7 @@ RSpec.feature 'Likes', type: :feature do
       find("[name='like-button']", match: :first).click
       expect(page).to have_css 'form.edit_like'
       find("form.edit_like [name='unlike-button']", match: :first).click
-      expect(page).to_not have_css 'form.edit_like'
+      expect(page).not_to have_css 'form.edit_like'
     end.to change(other_user.likes_given, :count).by(0)
   end
 end
