@@ -9,18 +9,22 @@ This is the final project of the Main Rails curriculum at [Microverse](https://w
 
 - The objective is to build a facebook clone with core features of the platform – users, profiles, “friending”, posts, news feed, and “liking”. Sign-in with the real Facebook by using Omniauth and Devise is also implemented.
 
-#### [Assignment link](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
+## 🖼️ Screenshot
 
-#### [View in broswer](https://f-b-clone.herokuapp.com/)
+![FaceBook Clone Screenshot](./docs/facebook_clone.gif)
 
-## Prerequisites
+## [Assignment link](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
+
+## 🌐 [View in broswer](https://f-b-clone.herokuapp.com/)
+
+## 🛠️ Usage (Development)
+
+### Prerequisites
 
 > Ruby: 2.6.3  
 > Rails: 5.2.3
 
-## Usage (Development)
-
-- Clone the repo and run the app.
+### Clone the repo and run the app.
 
 ```
    git clone https://github.com/bolah2009/facebook-clone.git
@@ -33,14 +37,14 @@ This is the final project of the Main Rails curriculum at [Microverse](https://w
    open localhost:3000 on browser
 ```
 
-## How to run the test suite
+### How to run the test suite
 
 - run tests:
   > `rpsec --format documentation`
 - view test coverage:
   > `open coverage/index.html`
 
-## Contributing
+## 🤝🏾 Contributing
 
 If you are working on adding features, PRs, or bugfixes, this section should help get you going.
 
@@ -56,7 +60,30 @@ If you are working on adding features, PRs, or bugfixes, this section should hel
    > `git push origin my-new-feature`
 6. Create new Pull Request
 
-## Authors
+## 👨🏽‍💻 Authors
 
 - [@Torres-ssf](https://github.com/Torres-ssf)
 - [@bolah2009](https://github.com/bolah2009/)
+
+## 🧾 TODO
+
+- Fix Rubocop Offense in [rubocop_todo.yml](.rubocop_todo.yml)
+- Improve UI/UX
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues).
+
+## ⭐️ Show your support
+
+Give a ⭐️ if you like this project!
+
+## 🙏🏾 Acknowledgments
+
+- Microverse Team
+
+## 📝 License
+
+[MIT licensed](./LICENSE).
