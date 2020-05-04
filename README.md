@@ -15,7 +15,7 @@ This is the final project of the Main Rails curriculum at [Microverse](https://w
 
 ## [Assignment link](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 
-## 🌐 [View in broswer](https://f-b-clone.herokuapp.com/)
+## 🌐 [View in broswer](https://rails-fb-clone.herokuapp.com/)
 
 ## 🛠️ Usage (Development)
 
